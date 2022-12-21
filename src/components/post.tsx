@@ -10,31 +10,31 @@ const Post = () => {
   const { data: post = [], isLoading, isError } = useGetPostByIdQuery(id || "");
   const { data: comments = [] } = useGetCommentsByIdQuery(id || "");
 
-  const { data: user } = useGetUserQuery(userId || "");
+  const { data: user, isError: isUserError } = useGetUserQuery(userId || "");
 
   if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error!</p>;
+
+  if (isError || isUserError) return <p>Error!</p>;
 
   return (
     <>
-      <h3>Post</h3>
       {post && "title" in post && user && "name" in user && (
         <>
-          <h4>{user.name}</h4>
-          <p>{post.title}</p>
+          <h3>{post.title}</h3>
           <p>{post.body}</p>
+          <h4> written by - {user.name}</h4>
+          <h3>Comments</h3>
+          <ul>
+            {comments.map((comment) => (
+              <div key={comment.id} className="comments">
+                <li>Name - {comment.name}</li>
+                <li>Email - {comment.email}</li>
+                <li>Body - {comment.body}</li>
+              </div>
+            ))}
+          </ul>
         </>
       )}
-      <h5>Comments</h5>
-      <ul>
-        {comments.map((comment) => (
-          <div key={comment.id}>
-            <li>{comment.name}</li>
-            <li>{comment.email}</li>
-            <li>{comment.body}</li>
-          </div>
-        ))}
-      </ul>
     </>
   );
 };

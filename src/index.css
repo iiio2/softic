@@ -2,7 +2,47 @@ body {
   font-family: "Rubik", sans-serif;
 }
 
+.container {
+  width: 90%;
+  margin: 0.5rem auto;
+}
+
+h3,
+h4,
+h5 {
+  text-transform: uppercase;
+}
+
 ul,
 li {
   list-style: none;
+  padding-left: 0;
+}
+
+a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: inline-block;
+  padding: 0.2rem;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.comments {
+  margin: 0.5rem 0;
+}
+
+.comments:nth-child(odd) {
+  background-color: #f5f6fa;
+}
+
+.comments:nth-child(even) {
+  background-color: #dcdde1;
+}
+
+.posts a {
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
