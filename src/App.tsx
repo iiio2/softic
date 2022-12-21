@@ -1,15 +1,14 @@
-import { useGetPostsQuery } from "./slices/postApiSlice";
+import { Routes, Route } from "react-router-dom";
+import Posts from "./components/posts";
+import Post from "./components/post";
 
 function App(): JSX.Element {
-  const { data: posts = [], isLoading } = useGetPostsQuery();
-  if (isLoading) return <p>Loading...</p>;
-
-  console.log(posts);
-
   return (
     <main>
-      <h3>Posts</h3>
-      <ul></ul>
+      <Routes>
+        <Route path="/" element={<Posts />} />
+        <Route path="/post/:id" element={<Post />} />
+      </Routes>
     </main>
   );
 }
