@@ -1,31 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
-
-interface Comment {
-  postId: number;
-  id: number;
-  name: string;
-  email: string;
-  body: string;
-}
-
-interface User {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-}
+import Post from "../models/Post";
+import User from "../models/User";
+import Comment from "../models/Comment";
 
 export const postApi = createApi({
   reducerPath: "postApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://jsonplaceholder.typicode.com",
+    baseUrl: import.meta.env.VITE_API_URL,
   }),
   endpoints: (builder) => ({
     getPosts: builder.query<Post[], void>({
@@ -45,8 +26,6 @@ export const postApi = createApi({
     }),
   }),
 });
-
-// we made endpoints named getUsers. From there useGetUsersQuery coming.
 
 export const {
   useGetPostsQuery,
