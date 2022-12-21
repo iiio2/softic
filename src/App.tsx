@@ -7,7 +7,7 @@ function App(): JSX.Element {
     <main>
       <Routes>
         <Route path="/" element={<Posts />} />
-        <Route path="/post/:id" element={<Post />} />
+        <Route path="/post/:id/user/:userId" element={<Post />} />
       </Routes>
     </main>
   );

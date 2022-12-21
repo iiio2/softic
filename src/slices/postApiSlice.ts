@@ -1,10 +1,25 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export default interface Post {
+interface Post {
   userId: number;
   id: number;
   title: string;
   body: string;
+}
+
+interface Comment {
+  postId: number;
+  id: number;
+  name: string;
+  email: string;
+  body: string;
+}
+
+interface User {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
 }
 
 export const postApi = createApi({
@@ -20,9 +35,22 @@ export const postApi = createApi({
     getPostById: builder.query<Post, string>({
       query: (post) => `/posts/${post}`,
     }),
+
+    getUser: builder.query<User, string>({
+      query: (user) => `/users/${user}`,
+    }),
+
+    getCommentsById: builder.query<Comment[], string>({
+      query: (comment) => `/posts/${comment}/comments`,
+    }),
   }),
 });
 
 // we made endpoints named getUsers. From there useGetUsersQuery coming.
 
-export const { useGetPostsQuery, useGetPostByIdQuery } = postApi;
+export const {
+  useGetPostsQuery,
+  useGetPostByIdQuery,
+  useGetUserQuery,
+  useGetCommentsByIdQuery,
+} = postApi;
