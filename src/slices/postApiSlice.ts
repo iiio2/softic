@@ -6,23 +6,23 @@ import Comment from "../models/Comment";
 export const postApi = createApi({
   reducerPath: "postApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL,
+    baseUrl: "/api",
   }),
   endpoints: (builder) => ({
     getPosts: builder.query<Post[], void>({
-      query: () => `/posts?_page=0&_limit=20`,
+      query: () => `/posts`,
     }),
 
     getPostById: builder.query<Post, string>({
-      query: (post) => `/posts/${post}`,
+      query: (post) => `/post?id=${post}`,
     }),
 
     getUser: builder.query<User, string>({
-      query: (user) => `/users/${user}`,
+      query: (user) => `/user?id=${user}`,
     }),
 
     getCommentsById: builder.query<Comment[], string>({
-      query: (comment) => `/posts/${comment}/comments`,
+      query: (comment) => `/comments?id=${comment}`,
     }),
   }),
 });
